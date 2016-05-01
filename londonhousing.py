@@ -11,10 +11,10 @@ for line in csvdata:
 	tempdict = {}
 	csvname = line[0]
 	tempdict = {'population': int(line[1]), 
-				'avghouseprice': int(line[2]), 
-				'numnewhomes': int(line[3]), 
-				'percentrent': float(line[4]),
-				'peoplepernewhome': float(line[1]) / int(line[3])}
+		    'avghouseprice': int(line[2]), 
+		    'numnewhomes': int(line[3]), 
+		    'percentrent': float(line[4]),
+		    'peoplepernewhome': float(line[1]) / int(line[3])}
 
 	for borough in geojson['objects']['thenewestdict1']['geometries']:
 		boroughname = borough['properties']['Name']
