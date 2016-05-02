@@ -3,16 +3,16 @@ import csv, json, os
 boroughmetrics = {}
 
 geojson = json.load(open('clean.json'))
-csvdata = csv.reader(open('london-borough-profiles.csv', 'U'))
+data = csv.reader(open('london-borough-profiles.csv', 'U'))
 
-csvdata.next() #Skip headers.
+next(data) #Skip headers.
 
-for line in csvdata:
+for line in data:
 	tempdict = {}
 	csvname = line[0]
-	tempdict = {'population': int(line[1]), 
-		    'avghouseprice': int(line[2]), 
-		    'numnewhomes': int(line[3]), 
+	tempdict = {'population': int(line[1]),
+		    'avghouseprice': int(line[2]),
+		    'numnewhomes': int(line[3]),
 		    'percentrent': float(line[4]),
 		    'peoplepernewhome': float(line[1]) / int(line[3])}
 
@@ -25,7 +25,3 @@ with open('statgeo.json', 'w') as outfile:
 	json.dump(geojson, outfile)
 
 os.system("topojson -o stattopo.json statgeo.json -p")
-
-
-
-
