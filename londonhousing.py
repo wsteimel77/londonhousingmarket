@@ -2,7 +2,7 @@ import csv, json, os
 
 boroughmetrics = {}
 
-geojson = json.load(open('clean.json'))
+geojson = json.load(open('site/clean.json'))
 data = csv.reader(open('london-borough-profiles.csv', 'U'))
 
 next(data) #Skip headers.
@@ -21,7 +21,7 @@ for line in data:
 		if csvname == boroughname:
 			borough['properties'].update(tempdict)
 
-with open('statgeo.json', 'w') as outfile:
+with open('site/statgeo.json', 'w') as outfile:
 	json.dump(geojson, outfile)
 
-os.system("topojson -o stattopo.json statgeo.json -p")
+os.system("topojson -o site/stattopo.json site/statgeo.json -p")
